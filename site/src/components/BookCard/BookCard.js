@@ -30,7 +30,7 @@ const BookCard = ({ book, saver, refresh }) => {
       </main>
       <footer>
         <div>{desc}</div>
-        <div>By {book.authors.reduce((acc, curr) => acc + ", " + curr)}</div>
+        <div>By {book.authors.reduce((acc, curr) => acc + ", " + curr, "")}</div>
       </footer>
 
       <section className={`buttons${open ? " open" : ""}`}>
