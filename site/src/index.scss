@@ -117,6 +117,21 @@ button {
   }
 }
 
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+
+  color: unset;
+
+  a {
+    text-decoration: none;
+    color: $color-text;
+    font-size: large;
+  }
+}
+
 .book-card {
   margin: 1rem;
   position: relative;
@@ -180,7 +195,6 @@ button {
 
     &.open {
       transform: translateY(0%);
-
       opacity: 100;
     }
   }
@@ -201,6 +215,13 @@ button {
     }
 
     .results {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    }
+  }
+
+  &.saved {
+    .books {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
     }

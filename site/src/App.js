@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, BrowserRouter as Router } from "react-router-dom";
-import { Search } from "./pages";
+import { Search, Saved } from "./pages";
 import api from "./api";
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <Router>
         <Route exact path="/" component={Search} />
-        <Route exact path="/saved"></Route>
+        <Route exact path="/saved" component={Saved} />
       </Router>
     </div>
   );

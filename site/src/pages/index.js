@@ -1,3 +1,4 @@
 import Search from "./Search";
+import Saved from "./Saved";
 
-export { Search };
+export { Search, Saved };

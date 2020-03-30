@@ -42,7 +42,7 @@ const api = {
     return new SearchResult(result.data);
   },
   /**
-   * @returns {Book[]}
+   * @returns {Promise<Book[]>}
    */
   getSaved: async function() {
     const result = await axios.get("/api/" + this.uid);
@@ -53,7 +53,7 @@ const api = {
    * @param {Book} book
    */
   save: async function(book) {
-    const result = await axios.put("/api/" + this.uid, book);
+    await axios.put("/api/" + this.uid, book);
   },
   /**
    *
@@ -61,7 +61,7 @@ const api = {
    * @returns {boolean}
    */
   delete: async function(book) {
-    const result = await axios.delete(`/api/${this.uid}/${book.id}`);
+    await axios.delete(`/api/${this.uid}/${book.id}`);
   }
 };
 

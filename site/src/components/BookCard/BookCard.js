@@ -1,15 +1,19 @@
 import React from "react";
-import { Book } from "../../api";
+import api, { Book } from "../../api";
 
 /**
  *
  * @param {object} Props
  * @param {Book} Props.book
+ * @param {boolean} Props.save
  */
-const BookCard = ({ book }) => {
+const BookCard = ({ book, saver, refresh }) => {
   const [open, setOpen] = React.useState(false);
 
   const openPage = () => window.open(book.link, "_blank");
+
+  const save = () => api.save(book);
+  const unsave = () => api.delete(book).then(refresh);
 
   let desc = book.description ? book.description.substr(0, 60) : "";
   if (desc) {
@@ -30,7 +34,15 @@ const BookCard = ({ book }) => {
       </footer>
 
       <section className={`buttons${open ? " open" : ""}`}>
-        <button className="save">Save</button>
+        {saver ? (
+          <button className="save" onClick={save}>
+            Save
+          </button>
+        ) : (
+          <button className="delete" onClick={unsave}>
+            Delete
+          </button>
+        )}
         <button className="info" onClick={openPage}>
           More Info
         </button>
