@@ -1,0 +1,208 @@
+$radius: 0.5rem;
+$padding: 0.5rem;
+$margin: 0.5rem;
+
+$color-primary: hsl(200, 77%, 37%);
+$color-bg: hsl(0, 0%, 20%);
+$color-text: hsl(220, 12%, 91%);
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  transition: all 0.3s;
+}
+
+html,
+body,
+#root,
+#app {
+  height: 100%;
+  width: 100%;
+  background-color: $color-bg;
+  color: $color-text;
+  margin: 0 auto;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: 2.1rem;
+}
+
+button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  font-size: large;
+
+  color: $color-text;
+  padding: 1px;
+
+  &:active,
+  &:hover {
+    outline: none;
+    color: $color-primary;
+    border-bottom: 1px solid $color-primary;
+  }
+
+  &:active {
+    color: darken($color-primary, 10%);
+  }
+}
+
+.text-input {
+  width: 50%;
+  position: relative;
+  margin: $margin;
+
+  font-family: bokor;
+
+  input {
+    width: 100%;
+    height: 100%;
+    padding-top: $padding * 3;
+    background-color: transparent;
+    border: none;
+    color: unset;
+    outline: none;
+    font-size: 1.5rem;
+
+    &:focus + label.floating::after,
+    &:valid + label.floating::after {
+      transform: translateX(0%);
+      transition: all 0.3s ease;
+      opacity: 100;
+    }
+
+    &:focus + label.floating > .content-name,
+    &:valid + label.floating > .content-name {
+      transform: translateY(-150%);
+      font-size: small;
+      color: $color-primary;
+      transition: all 0.3s ease;
+    }
+  }
+
+  label.floating {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+    border-bottom: 1px solid $color-text;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      height: 100%;
+      width: 100%;
+      border-bottom: 2px solid $color-primary;
+      transform: translateX(-100%);
+      transition: all 0.3 ease;
+      opacity: 0;
+    }
+
+    .content-name {
+      position: absolute;
+      bottom: 0px;
+      left: 0;
+      color: hsla(0, 100, 100, 0.5);
+      transition: all 0.3s ease;
+    }
+  }
+}
+
+.book-card {
+  margin: 1rem;
+  position: relative;
+
+  border-radius: $radius;
+  box-shadow: 0.1rem 0.2rem 1rem hsla(0, 0, 0, 0.2);
+  padding: 1rem;
+
+  &:hover {
+    background-color: darken($color-bg, 10%);
+    box-shadow: 0.1rem 0.2rem 0.5rem hsla(0, 0, 0, 0.4);
+  }
+
+  text-decoration: none;
+  color: unset;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  * {
+    margin: 0.3rem auto auto auto;
+  }
+
+  section.buttons {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    transform: translateY(100%);
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    top: 0;
+    z-index: 10000;
+    background-color: hsla(0, 0, 0, 0.9);
+    border-radius: $radius;
+    pointer-events: none;
+
+    opacity: 0;
+
+    button {
+      margin: auto;
+      padding: 0.5rem;
+      border-radius: $radius;
+
+      &.save {
+        background-color: red;
+      }
+
+      &.info {
+        background-color: $color-primary;
+
+        &:hover {
+          color: white;
+        }
+      }
+    }
+
+    &.open {
+      transform: translateY(0%);
+
+      opacity: 100;
+    }
+  }
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 1rem;
+  margin: 0 auto;
+
+  &.search {
+    form {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: baseline;
+    }
+
+    .results {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    }
+  }
+}
