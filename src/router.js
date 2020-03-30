@@ -10,7 +10,7 @@ router
   })
   .put("/:uid", async (req, res) => {
     try {
-      await Book.create(req.body);
+      await Book.create({ ...req.body, uid: req.params.uid });
 
       res.status(200).end();
     } catch (error) {
@@ -24,8 +24,9 @@ router
         id: req.params.bid
       });
 
-      res.status(200).send(deletedCount);
+      res.status(200).end();
     } catch (error) {
+      console.log(error.message);
       res.status(500).end();
     }
   });

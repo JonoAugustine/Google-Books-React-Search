@@ -46,14 +46,13 @@ const api = {
    */
   getSaved: async function() {
     const result = await axios.get("/api/" + this.uid);
-    return result.data.map(b => new Book(b));
+    return result.data;
   },
   /**
    *
    * @param {Book} book
    */
   save: async function(book) {
-    console.log("saving");
     await axios.put("/api/" + this.uid, book);
   },
   /**
@@ -62,9 +61,7 @@ const api = {
    * @returns {boolean}
    */
   delete: async function(book) {
-    console.log("deleting");
-    const { data } = await axios.delete(`/api/${this.uid}/${book.id}`);
-    console.log("Deletd", data);
+    await axios.delete(`/api/${this.uid}/${book.id}`);
   }
 };
 
